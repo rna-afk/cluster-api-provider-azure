@@ -429,6 +429,7 @@ func (s *ClusterScope) GroupSpecs() []azure.ASOResourceSpecGetter[*asoresourcesv
 			Location:       s.Location(),
 			ClusterName:    s.ClusterName(),
 			AdditionalTags: s.AdditionalTags(),
+			ManagedBy:      s.ManagedBy(),
 		},
 	}
 	if s.Vnet().ResourceGroup != "" && s.Vnet().ResourceGroup != s.ResourceGroup() {
@@ -438,6 +439,7 @@ func (s *ClusterScope) GroupSpecs() []azure.ASOResourceSpecGetter[*asoresourcesv
 			Location:       s.Location(),
 			ClusterName:    s.ClusterName(),
 			AdditionalTags: s.AdditionalTags(),
+			ManagedBy:      s.ManagedBy(),
 		})
 	}
 	return specs
@@ -751,6 +753,11 @@ func (s *ClusterScope) OutboundPoolName(role string) string {
 // ResourceGroup returns the cluster resource group.
 func (s *ClusterScope) ResourceGroup() string {
 	return s.AzureCluster.Spec.ResourceGroup
+}
+
+// ManagedBy returns the managed by field that can be set in the resource group.
+func (s *ClusterScope) ManagedBy() string {
+	return s.AzureCluster.Spec.ManagedBy
 }
 
 // NodeResourceGroup returns the resource group where nodes live.

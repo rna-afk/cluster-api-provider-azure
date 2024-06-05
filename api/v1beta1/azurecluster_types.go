@@ -49,6 +49,10 @@ type AzureClusterSpec struct {
 	// this when creating an AzureCluster as CAPZ will set this for you. However, if it is set, CAPZ will not change it.
 	// +optional
 	ControlPlaneEndpoint clusterv1.APIEndpoint `json:"controlPlaneEndpoint,omitempty"`
+
+	// ManagedBy represents the field in the resource group that can be set.
+	// +optional
+	ManagedBy string `json:"managedBy,omitempty"`
 }
 
 // AzureClusterStatus defines the observed state of AzureCluster.

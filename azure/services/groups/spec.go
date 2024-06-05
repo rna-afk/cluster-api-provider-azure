@@ -33,6 +33,7 @@ type GroupSpec struct {
 	AzureName      string
 	Location       string
 	ClusterName    string
+	ManagedBy      string
 	AdditionalTags infrav1.Tags
 }
 
@@ -61,6 +62,7 @@ func (s *GroupSpec) Parameters(ctx context.Context, existing *asoresourcesv1.Res
 				Role:        ptr.To(infrav1.CommonRole),
 				Additional:  s.AdditionalTags,
 			}),
+			ManagedBy: ptr.To(s.ManagedBy),
 		},
 	}
 	if s.AzureName != "" {
